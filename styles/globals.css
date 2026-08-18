@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf9f8;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-draw-path {
+      animation: drawPath 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .animate-slide-in-fwd {
+      animation: slideInFwd 250ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .animate-slide-in-bck {
+      animation: slideInBck 250ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+  }
+}
+
+@keyframes slideInFwd {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInBck {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes drawPath {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
